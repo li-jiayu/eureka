@@ -1,32 +1,19 @@
+kind: pipeline
+type: docker
+name: default
+
 workspace:
   base: /home
   path: commission
- 
-pipeline:
-  build:
-    image: java:openjdk-8
-  environment:
-    - GRADLE_USER_HOME=~/.gradle
+
+steps:
+- name: buildwar
+  image: gradle:jdk8
   commands:
-    - pwd
-    - wget http://mirrors.163.com/.help/sources.list.jessie -O /etc/apt/sources.list
-    - apt-get update
-    - apt-get install sshpass
-    - ./gradlew test
-    - ./gradlew war
-    - sshpass -p openjaw scp build/libs/commission-1.0.war root@192.168.22.148:/root/ftp/commission-1.0.war
- 
-ssh-deploy:
-  image: appleboy/drone-ssh
-  pull: true
-  host: 192.168.22.148
-  user: root
-  password: openjaw
-  port: 22
-  command_timeout: 60
-  script:
-    - cd /root/ftp
-    - ll
-  when:
-    branch: [master]
-    event: [push]
+  - pwd
+  - wget http://mirrors.163.com/.help/sources.list.jessie -O /etc/apt/sources.list
+  - apt-get update
+  - apt-get install sshpass
+  - gradle test
+  - gradle war
+  - sshpass -p openjaw scp build/libs/commission-1.0.war root@192.168.22.148:/root/ftp/commission-1.0.war
