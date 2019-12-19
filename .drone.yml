@@ -15,7 +15,7 @@ steps:
   - apt-get update
   - apt-get install sshpass
   - gradle test
-  - gradle jar
+  - gradle jar --debug
   - ls build/
   - ls build/libs/ | grep jar
   - sshpass -p openjaw scp build/libs/*.jar root@192.168.22.148:/root/ftp/
