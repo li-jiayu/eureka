@@ -15,5 +15,5 @@ steps:
   - apt-get update
   - apt-get install sshpass
   - gradle test
-  - gradle war
-  - sshpass -p openjaw scp build/libs/commission-1.0.war root@192.168.22.148:/root/ftp/commission-1.0.war
+  - gradle jar
+  - sshpass -p openjaw scp build/libs/*.jar root@192.168.22.148:/root/ftp/commission-1.0.war
