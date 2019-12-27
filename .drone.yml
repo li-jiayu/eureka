@@ -16,6 +16,4 @@ steps:
   - apt-get install sshpass
   - gradle test
   - gradle jar --debug
-  - ls build/
-  - ls build/libs/ | grep jar
   - sshpass -p openjaw scp -o 'StrictHostKeyChecking no' build/libs/eureka.jar root@192.168.22.148:/root/ftp/
