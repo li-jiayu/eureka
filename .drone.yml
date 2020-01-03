@@ -9,3 +9,4 @@ pipeline:
       - gradle test
       - gradle jar --debug
       - sshpass -p openjaw scp -o 'StrictHostKeyChecking no' build/libs/eureka.jar root@192.168.22.148:/root/ftp/
+
