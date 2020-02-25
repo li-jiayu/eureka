@@ -105,6 +105,31 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			
+		    	<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+				    <execution>
+					<!-- 绑定checkstyle:check到validate生命周期，在validate时会自动进行代码规范检查 -->
+					<id>validate</id>
+					<phase>validate</phase>
+					<configuration>
+					    <!-- 配置文件的路径， -->
+					    <configLocation>checkStyle.xml</configLocation>
+					    <encoding>UTF-8</encoding>
+					    <consoleOutput>true</consoleOutput>
+					    <failsOnError>true</failsOnError>
+					    <includeTestSourceDirectory>false</includeTestSourceDirectory>
+					</configuration>
+					<goals>
+					    <goal>check</goal>
+					</goals>
+				    </execution>
+				</executions>
+		    	</plugin>
+			
+			
 		</plugins>
 	</build>
 
